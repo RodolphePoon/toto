@@ -1,0 +1,14 @@
+{
+  "name": "instagram-scraper",
+  "version": "1.0.0",
+  "description": "scrape instagram",
+  "main": "instagram-scraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "instagram"
+  ],
+  "author": "rodolphe poon",
+  "license": "ISC"
+}

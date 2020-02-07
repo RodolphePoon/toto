@@ -1,3 +1,3 @@
 hello
 
-https://rodolphepoon.github.io/toto/.
+https://rodolphepoon.github.io/toto/

@@ -90,7 +90,8 @@ const parseLocation = (location) => {
   const { street_address, zip_code, city_name, region_name, country_code } = JSON.parse(address_json)
   const url = `https://www.instagram.com/explore/locations/${id}/${slug}/`
   return {
-    id, name, slug, url, address: street_address, zipCode: zip_code, locality: city_name, region: region_name, country: country_code
+    id, name, slug, url, address: street_address, zipCode: zip_code, locality: city_name, region: region_name, country: country_code,
+    detailedAddress: `${street_address},${city_name}, ${zip_code}, ${region_name}, ${country_code} `,
   }
 }
 const parseComments = ({ edges = [] }) => edges.map(({ node }) => {

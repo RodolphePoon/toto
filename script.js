@@ -1,18 +1,17 @@
-const fetchPosts = require('./fetchPosts')
-const createUrl = require('./createInstagramGraphqlQueryUrl')
+const fetchPosts = require('./fetchTaggedPosts')
+const { createUrl, shouldProcess } = require('./utils')
 const processPost = require('./processPost')
-const shouldProcess = require('./shouldProcess')
 const { query_hash, variables } = require("./config.json")
 
 async function run() {
   let has_next_page = true
   let end_cursor
-  let counter = 0, fetchCounter = 0
+  let counter = 0
 
   while (has_next_page) {
     const url = createUrl(query_hash, Object.assign({}, variables, { after: end_cursor }))
+    console.log(url)
     const response = await fetchPosts(url)
-    fetchCounter++
     end_cursor = response.end_cursor
     has_next_page = response.has_next_page
     for (const post of response.edges) {
@@ -22,6 +21,8 @@ async function run() {
       }
     }
   }
+
+  console.log(`processed ${counter} posts`)
 }
 
 run()

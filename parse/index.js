@@ -11,9 +11,12 @@ module.exports = {
   },
   general: require('./parseGeneralInfo'),
   JSONFromHtml: require('./extractJSONFromHtml'),
+  location: require('./parseLocationDetails'),
+  metas: require('./parseMeta'),
   text: require('./parseText'),
   findMatch: require('./findMatch'),
   html: {
-    post: require('./parsePostPageHtml')
+    post: require('./parsePostPageHtml'),
+    location: require('./parseLocationPageHtml')
   }
 }

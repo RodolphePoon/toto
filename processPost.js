@@ -15,12 +15,12 @@ module.exports = async (post) => {
   } else {
     return { isGood: false }
   }
-  const { hashtags, dish, adress: textadress, value, devise, restaurant } = textInfo
+  const { hashtags, dish, value, devise, restaurant } = textInfo
 
   const lat = _.get(locationInfo, 'detailedInfo.lat') || _.get(locationInfo, 'generalInfo.latitude')
   const lng = _.get(locationInfo, 'detailedInfo.lng') || _.get(locationInfo, 'generalInfo.longitude')
   const restaurantName = restaurant || _.get(locationInfo, 'generalInfo.title', '').replace(' on Instagram • Photos and Videos', '') || _.get(locationInfo, 'detailedInfo.name') || _.get(detail, 'generalInfo.location.name') || _.get(detail, 'technicalInfo.location.name')
-  const address = textadress || _.get(detail, 'generalInfo.location.detailedAddress') || _.get(detail, 'technicalInfo.location.detailedAddress') || _.get(locationInfo, 'detailedInfo.location.detailedAddress')
+  const address = _.get(detail, 'generalInfo.location.detailedAddress') || _.get(detail, 'technicalInfo.location.detailedAddress') || _.get(locationInfo, 'detailedInfo.location.detailedAddress')
 
 
   const isGood = dish && address && restaurantName && lat && lng

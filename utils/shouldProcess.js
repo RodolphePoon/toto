@@ -3,10 +3,9 @@ const parse = require('../parse')
 const DAY = 24 * 60 * 60
 module.exports = (post) => {
 
-
   const text = post.node.edge_media_to_caption.edges[0].node.text
-  const { mentions, hashtags } = parse.text(text)
-  const recent = isRecent(post.node.taken_at_timestamp, 20 * DAY)
+  const { mentions, hashtags, dish, adress, restaurant } = parse.text(text)
+  const recent = isRecent(post.node.taken_at_timestamp, 12 * DAY)
 
-  return recent
+  return recent && dish && restaurant && adress && mentions.includes("@foodhere.fr") && hashtags.includes("#foodhere")
 }

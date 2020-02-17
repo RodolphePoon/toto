@@ -2,11 +2,12 @@ const _ = require('lodash')
 const parseText = require('./parseText')
 module.exports = (info) => {
 
-  const { author, comment, contentLocation = {}, interactionStatistic, mainEntityofPage, uploadDate, commentCount, description, name, caption } = info
+  const { author = {}, comment = [], contentLocation = {}, interactionStatistic, mainEntityofPage, uploadDate, commentCount, description, name, caption } = info
   const { mentions, hashtags, adress, restaurant, dish, price, value, devise } = parseText(caption)
+  const { streetAddress, addressLocality, addressCountry } = _.get(contentLocation, 'address', {})
   return {
     user: {
-      name: author.alternateName,
+      name: _.get(author, 'alternateName'),
       url: _.get(author, 'mainEntityofPage.@id')
     },
     comments: comment.map(({ text, author = {} }) => {
@@ -20,11 +21,12 @@ module.exports = (info) => {
       }
     }),
     location: {
-      name: contentLocation.name,
+      name: _.get(contentLocation, 'name'),
       url: _.get(contentLocation, 'mainEntityofPage.@id'),
-      adress: _.get(contentLocation, 'address.streetAddress'),
-      locality: _.get(contentLocation, 'address.addressLocality'),
-      country: _.get(contentLocation, 'address.addressCountry.name')
+      adress: streetAddress,
+      locality: addressLocality,
+      country: _.get(addressCountry, 'name'),
+      detailedAddress: `${streetAddress}, ${addressLocality}, ${_.get(addressCountry, 'name')}`
     },
     likeCount: _.get(interactionStatistic, 'userInteractionCount'),
     url: _.get(mainEntityofPage, '@id'),

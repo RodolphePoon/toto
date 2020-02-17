@@ -3,7 +3,7 @@ const adressMarkers = ['📍'].join('|')
 const restaurantMarkers = ['🏠'].join('|')
 const dishMarkers = ['🍽️'].join('|')
 const priceMarkers = ['💵'].join('|')
-module.exports = (text) => {
+module.exports = (text = '') => {
   const mentions = text.match(/@([^@ \n\t\r])*/gi)
   const hashtags = text.match(/#([^# \n\t\r])*/gi)
   const adress = findMatch(text, adressMarkers, '\n\t\r')
@@ -11,7 +11,7 @@ module.exports = (text) => {
   const dish = findMatch(text, dishMarkers, '\n\t\r')
   const price = findMatch(text, priceMarkers, '\n\t\r') || ''
   const value = (price.match(/\d+/g) || [])[0] || 0
-  const devise = (price.match(/\D/gi) || [])[0] || null
+  const devise = ((price.match(/\D+/g) || [])[0] || '').trim()
   return {
     mentions, hashtags, adress, restaurant, dish, value, devise
   }

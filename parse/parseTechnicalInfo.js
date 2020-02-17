@@ -1,6 +1,9 @@
 const _ = require('lodash')
 const parseText = require('./parseText')
 const parseTechnicalInfo = ({ PostPage }) => {
+  if (!PostPage) {
+    return
+  }
   const {
     id,
     shortcode,
@@ -13,7 +16,7 @@ const parseTechnicalInfo = ({ PostPage }) => {
     taken_at_timestamp, edge_media_preview_like, location, owner, is_ad,
     edge_sidecar_to_children = {}
 
-  } = _.get(PostPage, [0, 'graphql', 'shortcode_media'])
+  } = _.get(PostPage, [0, 'graphql', 'shortcode_media'], {})
   const { mentions, hashtags } = parseText(_.get(edge_media_to_caption, 'edges[0].node.text', ''))
 
   return {

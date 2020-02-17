@@ -6,22 +6,24 @@ const createHtml = require('../utils/createHtml')
 const createJSON = require('../utils/createJSON')
 const fs = require('fs')
 
-module.exports = async (url) => {
-  console.log({ locationUrl: url })
+module.exports = async (url, test, id = "test") => {
+  console.log(`[parse location page html] ${url}`)
+  let detailedInfo, generalInfo
+  const html = await rp(url)
 
-  const html = await rp(url).catch(err => {
-
-    fs.createWriteStream('flflflf.txt', JSON.stringify(err))
-
-    return {}
-  })
-  createHtml('location', html)
-
-  /*
   const [locationInfo] = JSONFromHtml(html)
-  createJSON('location', locationInfo)
-  const detailedInfo = parseLocationInfo(locationInfo)
-  const generalInfo = parseLocationMeta(html)
+  if (locationInfo) {
+    detailedInfo = parseLocationInfo(locationInfo)
+  }
+  if (html) {
+    generalInfo = parseLocationMeta(html)
+  }
 
-  return { generalInfo, detailedInfo }*/
+  if (test) {
+    createHtml(id, html)
+    createJSON(id + '_location_raw', locationInfo)
+    createJSON(id + '_location_parsed', { detailedInfo, generalInfo })
+
+  }
+  return { generalInfo, detailedInfo }
 }

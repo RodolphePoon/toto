@@ -1,0 +1,19 @@
+[
+  {
+    "text": "Hello toto 🍽️ plat\n🏠 restaurant\n📍12 rue toto, paris, 15e\n💵 15 eur\n\n#test #foodhere @foodhere.fr #igfood #yummy #poulet",
+    "restaurant": "restaurant",
+    "lat": 48.84881,
+    "lng": 2.29772,
+    "address": "12 rue toto, paris, 15e",
+    "dish": "plat",
+    "value": "15",
+    "devise": "eur",
+    "hashtags": [
+      "#test",
+      "#foodhere",
+      "#igfood",
+      "#yummy",
+      "#poulet"
+    ]
+  }
+]

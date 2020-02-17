@@ -12,6 +12,8 @@ module.exports = async (post) => {
   let locationInfo
   if (locationUrl) {
     locationInfo = await parse.html.location(locationUrl).catch(err => null)
+  } else {
+    return { isGood: false }
   }
   const { hashtags, dish, adress: textadress, value, devise, restaurant } = textInfo
 

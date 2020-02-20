@@ -22,7 +22,6 @@ module.exports = async (post) => {
   const restaurantName = restaurant || _.get(locationInfo, 'generalInfo.title', '').replace(' on Instagram • Photos and Videos', '') || _.get(locationInfo, 'detailedInfo.name') || _.get(detail, 'generalInfo.location.name') || _.get(detail, 'technicalInfo.location.name')
   const address = _.get(detail, 'generalInfo.location.detailedAddress') || _.get(detail, 'technicalInfo.location.detailedAddress') || _.get(locationInfo, 'detailedInfo.location.detailedAddress')
 
-
   const isGood = dish && address && restaurantName && lat && lng
 
   createJSON(`${postId}_parsed`, {
@@ -38,6 +37,7 @@ module.exports = async (post) => {
 
   return {
     data: {
+      src: img_url,
       text,
       restaurant,
       lat,

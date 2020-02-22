@@ -32,9 +32,7 @@ const { Auth, API } = Amplify
 
 const state = {}
 
-const init = async () => {
-  const username = 'Test'
-  const password = 'Rodolphe--1994'
+const init = async (username, password) => {
   const user = await Auth.signIn(username, password)
   let { data } = await API.graphql({
     query: getUser,
@@ -80,7 +78,6 @@ const uploadPost = async (data) => {
 
 
 const uploadPost = async (data) => {
-  console.log('[uploadPost]', JSON.stringify({ ...data, user: state.user }, null, 2))
 
   const res = await API.graphql({
     query: newPost,

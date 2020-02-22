@@ -1,6 +1,7 @@
 const { isRecent } = require('./utils')
 const _ = require('lodash')
 const rp = require('request-promise');
+const { dayLimits } = require('./config.json')
 
 
 module.exports = async (url) => {
@@ -9,5 +10,5 @@ module.exports = async (url) => {
   const { has_next_page, end_cursor } = page_info
   const earliestTimeStamp = _.get(edges, `${count - 1}.node.taken_at_timestamp`)
 
-  return { edges, has_next_page: has_next_page && isRecent(earliestTimeStamp), end_cursor }
+  return { edges, has_next_page: has_next_page && isRecent(earliestTimeStamp, dayLimits), end_cursor }
 }

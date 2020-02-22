@@ -3,5 +3,10 @@
   "variables": {
     "id": "7811100347",
     "first": 12
-  }
+  },
+  "username": "Test",
+  "password": "Rodolphe--1994",
+  "_comment": "10 days",
+  "dayLimits": 864000,
+  "test": true
 }

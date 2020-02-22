@@ -8,5 +8,9 @@
   "password": "Rodolphe--1994",
   "_comment": "10 days",
   "dayLimits": 864000,
-  "test": true
+  "test": true,
+  "instagram_basic_api": {
+    "access_token": "IGQVJXVHdGdER5YVBURVBmWmx6YjBkR2MzRC10N0ZAJRDBFcXpzcVNsUXdmRkRCS2ZAaNHp1aG5ZAbjlkekZAsUlBReFh1eXJpNTZAmcm9uODFaTWlrMDU1c3gzUFZAnNWx2WHhuRGhveW8wWGNYTkZASOUloMENrV2wxMXd0QTFV",
+    "user_id": "17841407810426387"
+  }
 }

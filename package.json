@@ -5,8 +5,7 @@
   "main": "instagram-scraper.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node instagram-scraper.js",
-    "script": "node script.js"
+    "start": "node script.js"
   },
   "keywords": [
     "instagram"

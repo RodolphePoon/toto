@@ -32,23 +32,24 @@ const { Auth, API } = Amplify
 
 const state = {}
 
-const init = () => {
+const init = async () => {
   const username = 'Test'
   const password = 'Rodolphe--1994'
-  Auth.signIn(username, password).then(async user => {
-    let { data } = await API.graphql({
-      query: getUser,
-      variables: {
-        id: user.id || user.attributes.sub
-      },
-      authMode: 'AWS_IAM'
-    })
-    console.log({ data })
-    state.user = {
-      ...data.getUser,
-      provider: "foodhere"
-    }
+  const user = await Auth.signIn(username, password)
+  let { data } = await API.graphql({
+    query: getUser,
+    variables: {
+      id: user.id || user.attributes.sub
+    },
+    authMode: 'AWS_IAM'
   })
+  state.user = {
+    username: data.getUser.name,
+    user_img: data.getUser.src,
+    id: data.getUser.id,
+  }
+  return 'OK'
+
 }
 
 
@@ -69,12 +70,25 @@ const newPost = `mutation NewPost($input: newPost) {
   }
 }
 `;
+/*
+const uploadPost = async (data) => {
+  console.log('[uploadPost]', JSON.stringify({ ...data, user: state.user }, null, 2))
+  return 'dd'
+}
+*/
 
-const uploadPost = (data) => API.graphql({
-  query: newPost,
-  variables: { input: { ...data, user: state.user, } },
-  authMode: "AWS_IAM"
-})
+
+
+const uploadPost = async (data) => {
+  console.log('[uploadPost]', JSON.stringify({ ...data, user: state.user }, null, 2))
+
+  const res = await API.graphql({
+    query: newPost,
+    variables: { input: { ...data, user: state.user } },
+    authMode: "AWS_IAM"
+  })
+  return res
+}
 
 const hello = `
 query ff{

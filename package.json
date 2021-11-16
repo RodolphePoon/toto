@@ -20,7 +20,7 @@
     "apollo-link-http": "^1.2.0",
     "aws-amplify": "^2.2.5",
     "aws-appsync": "^1.0.0",
-    "aws-sdk": "^2.141.0",
+    "aws-sdk": "^2.814.0",
     "cheerio": "^1.0.0-rc.3",
     "cross-fetch": "^3.0.4",
     "es6-promise": "^4.1.1",

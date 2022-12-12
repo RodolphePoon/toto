@@ -24,7 +24,7 @@
     "cheerio": "^1.0.0-rc.3",
     "cross-fetch": "^3.0.4",
     "es6-promise": "^4.1.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "form-data": "^3.0.0",
     "graphql": "^0.11.7",
     "graphql-tag": "^2.5.0",
